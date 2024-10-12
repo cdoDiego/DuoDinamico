@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'MyCustomFont'; /* Nombre personalizado para tu fuente */
+    src: url('../fonts/BebasNeue-Regular.ttf') format('truetype'); /* Ruta al archivo TTF */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Aplicar la fuente en el body o a algún elemento específico */
+body {
+    font-family: 'MyCustomFont', sans-serif; /* Usa la fuente personalizada con una fuente de respaldo */
+}
+
+.main {
+    display: flex;
+    gap: 44px; 
+}
+
+.initialHide {
+    display: none;
+}
+
+.pokeholder {
+    width: 100vw;
+    height: 100vw;
+    /*background-image: url({back});*/
+    background-size: contain;
+    margin: 5px 0;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    overflow: hidden;
+}
+
+.duo {
+    margin-left: 245px;
+    display: flex;
+    gap: 17px;
+    margin-top: 9px;
+}
+
+.poke {
+    width: 137px;
+    height: 125px;
+    /*object-fit: contain;*/
+}
+
+.poke2 {
+    width: 78px;
+    object-fit: contain;
+}
+
+.nick {
+    margin-left: 29px;
+    color: white;
+    font-size: 25.61px;
+    display: flex;
+    margin-top: -2px;
+}
+
+.bw {
+    filter: grayscale(100%);
+}
+
+.contenedor {
+    position: absolute;
+    top: 812px;
+    left: 134px;
+}
