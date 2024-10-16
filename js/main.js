@@ -43,8 +43,8 @@ function init() {
         if(teamDuo[i]) {
             var elemento = document.getElementById('pk'+(+i+1)+'duo');
             elemento.src = teamDuo[i].sprite;
-            if(team[i].morido) {
-                agregarClase('pk'+(+i+1), 'bw');
+            if(teamDuo[i].morido) {
+                agregarClase('pk'+(+i+1)+'duo', 'bw');
             }
         }
     }
@@ -78,7 +78,7 @@ function setPokemon(message, pos) {
         }
         else {
             agregarClase('pk'+(+pos+1), 'bw');
-            team[pos].morido = true;
+            )+'duo'[pos].morido = true;
             localStorage.setItem('team', JSON.stringify(team));
         }
     }
@@ -104,7 +104,7 @@ function setPokemonDuo(message, pos) {
         else {
             agregarClase('pk'+(+pos+1)+'duo', 'bw');
             teamDuo[pos].morido = true;
-            localStorage.setItem('teamDuo', JSON.stringify(team));
+            localStorage.setItem('teamDuo', JSON.stringify(teamDuo));
         }
     }
     else {
@@ -113,7 +113,7 @@ function setPokemonDuo(message, pos) {
         const nickElement = document.getElementById('nick'+(+pos+1));
         nickElement.innerHTML = '';
         teamDuo[pos] = null;
-        localStorage.setItem('teamDuo', JSON.stringify(team));
+        localStorage.setItem('teamDuo', JSON.stringify(teamDuo));
         quitarClase('pk'+(+pos+1)+'duo', 'bw');
     }
 }
