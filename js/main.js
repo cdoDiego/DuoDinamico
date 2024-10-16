@@ -78,7 +78,7 @@ function setPokemon(message, pos) {
         }
         else {
             agregarClase('pk'+(+pos+1), 'bw');
-            )+'duo'[pos].morido = true;
+            teamDuo[pos].morido = true;
             localStorage.setItem('team', JSON.stringify(team));
         }
     }
