@@ -3,6 +3,8 @@ let team = [];
 let teamDuo = [];
 let commands = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6'];
 let commandsDuo = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6'];
+let deathCommand = 'death';
+let death = 0;
 
 function init() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -10,6 +12,7 @@ function init() {
     duo = urlParams.get('duo');
     const comando = urlParams.get('comando');
     const comandoduo = urlParams.get('comandoduo');
+    const deathCommandUrl = urlParams.get('deathCommand');
 
     // Mostrar las variables en consola (puedes hacer algo con ellas)
     console.log('Variable 1:', canal);
@@ -20,6 +23,10 @@ function init() {
 
     if (comando) {
         commands = generarComandos(comando, 6);
+    }
+
+    if(deathCommandUrl) {
+        deathCommand = deathCommandUrl;
     }
 
     if (comandoduo) {
@@ -48,6 +55,9 @@ function init() {
             }
         }
     }
+
+    death = +localStorage.getItem('deathcount') || 0;
+    updateDeathCount();
 
     // Asegúrate de que los valores sean correctamente pasados
     ComfyJS.Init(canal, null, canales);
@@ -176,6 +186,12 @@ function completarConCeros(numero) {
     return numero.toString().padStart(4, '0');
 }
 
+function updateDeathCount() {
+    var elemento = document.getElementById('death');
+    elemento.innerHTML = `X${death}`;
+    localStorage.setItem('deathcount', death);
+}
+
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
     console.log('command', command);
     console.log('message', message);
@@ -188,6 +204,14 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
         let index = commands.indexOf(command);
         if(index != -1) {
             setPokemon(message, index);
+        }
+        if(command == deathCommand) {
+            if(message == '' || message == null || message == undefined) {
+                death++;
+            } else {
+                death = +message.split(' ')[0];
+            }
+            updateDeathCount();
         }
     }
 

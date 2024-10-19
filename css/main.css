@@ -65,3 +65,19 @@ body {
     top: 812px;
     left: 134px;
 }
+
+.death {
+    position: absolute;
+    top: 726px;
+    right: 674px;
+    color: white;
+    font-size: 29.92px;
+}
+
+.deathcont {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+}
