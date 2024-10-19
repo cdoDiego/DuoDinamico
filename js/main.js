@@ -252,13 +252,14 @@ function cargarDatosDesdeFirestore(usuario) {
                     cargarEquipoEnUI(team); // Cargar en la interfaz
                 }
             } else {
-                const team = JSON.parse(localStorage.getItem('team')) || [];
+                team = JSON.parse(localStorage.getItem('team')) || [null,null,null,null,null,null];
                 cargarEquipoEnUI(team);
+                guardarEquipoEnFirestore(canal, team);
                 console.log("No se encontraron datos para este usuario.");
             }
         })
         .catch((error) => {
-            const team = JSON.parse(localStorage.getItem('team')) || [];
+            team = JSON.parse(localStorage.getItem('team')) || [];
             cargarEquipoEnUI(team);
             console.error("Error al obtener datos de Firestore: ", error);
         });
@@ -277,8 +278,9 @@ function cargarDatosDesdeFirestoreDuo(usuario) {
                     cargarEquipoDuoEnUI(teamDuo); // Cargar en la interfaz
                 }
             } else {
-                teamDuo = JSON.parse(localStorage.getItem('teamDuo')) || [];
+                teamDuo = JSON.parse(localStorage.getItem('teamDuo')) || [null,null,null,null,null,null];
                 cargarEquipoDuoEnUI(teamDuo);
+                guardarEquipoEnFirestore(duo, teamDuo);
                 console.log("No se encontraron datos para este usuario.");
             }
         })
