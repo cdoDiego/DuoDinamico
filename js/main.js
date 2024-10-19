@@ -3,7 +3,7 @@ let team = [];
 let teamDuo = [];
 let commands = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6'];
 let commandsDuo = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6'];
-let deathCommand = 'death';
+let deathCommand = 'muertes';
 let death = 0;
 
 function init() {
