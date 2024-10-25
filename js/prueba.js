@@ -54,7 +54,7 @@ async function apiPokemon(poke) {
 
 // Fetch Pokémon data
 async function consultarMonster(nombre, variantes) {
-    const url = 'https://spriteserver.pmdcollab.org/graphql'; 
+    const url = 'https://spriteserver.pmdcollab.org/graphql';
     const query = `
         query {
             searchMonster(monsterName: "${nombre}") {
@@ -94,7 +94,7 @@ async function consultarMonster(nombre, variantes) {
 // Set and update Pokémon for team
 async function setPokemon(message, pos, isDuo = false) {
     const { input, variantes } = separarNombreYVariantes(message);
-    const [num, nick] = input.trim().split(' ');
+    let [num, nick] = input.trim().split(' ');
     if (!num) return clearPokemon(pos, isDuo);
 
     if (num === 'd') return markAsDead(pos, isDuo);
@@ -104,6 +104,11 @@ async function setPokemon(message, pos, isDuo = false) {
 
     /*const pokemon = await apiPokemon(num);
     if (pokemon == 'Not Found') return;*/
+    if(isNumber(num)) {
+        const pokemon = await apiPokemon(num);
+        if(pokemon == 'Not Found') return;
+        num = pokemon.species.name;
+    }
     const pokemonId = await consultarMonster(num, variantes);
 
     const spriteUrl = `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/${pokemonId}/Normal.png`;
@@ -212,6 +217,10 @@ async function cargarDatos(usuario, setter) {
 // Utility functions
 function completarConCeros(numero) {
     return numero.toString().padStart(4, '0');
+}
+
+function isNumber(value) {
+    return typeof value === 'number' || !isNaN(value);
 }
 
 function updateDeathCount() {
