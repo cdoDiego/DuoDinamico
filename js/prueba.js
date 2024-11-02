@@ -59,6 +59,7 @@ async function consultarMonster(nombre, variantes) {
         query {
             searchMonster(monsterName: "${nombre}") {
                 id
+                name
                 forms {
                     name
                     fullPath
@@ -74,9 +75,8 @@ async function consultarMonster(nombre, variantes) {
         },
         body: JSON.stringify({ query })
     });
-
     const resultado = await response.json();
-    const monster = resultado.data.searchMonster[0];
+    const monster = resultado.data.searchMonster.find(m => m.name.toLowerCase() == nombre.toLowerCase());
     console.log(variantes);
     if (!variantes.length || variantes.length == 0) {
         return monster.forms[0].fullPath;
